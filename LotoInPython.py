@@ -44,17 +44,32 @@ def frequencyPrinter(numbers_n_frequency, desired_frequency,amoun_of_lines):
     print(".....................")
     return best_in_frequency
 
-amoun_of_lines = int (input("Type the amount of lines: "))
-numbers_n_frequency = getDataNumbers()
-desired_frequency = int (input("Frequency: "))
-best_in_frequency = frequencyPrinter(numbers_n_frequency, desired_frequency,amoun_of_lines)
+def printTwentyRandom(best_in_frequency):
+    chosen = []
+    while len(chosen) < 20:
+        num = random.choice(best_in_frequency)
+        if num not in chosen:
+            chosen.append(num)
+    chosen.sort()
+    print(' '.join(map (str,chosen)))
+    print(best_in_frequency)
 
-chosen = []
-for i in range(20):
-    num = random.choice(best_in_frequency)
-    if num not in chosen:
-        chosen.append(num)
-chosen.sort()
-str(chosen)
-print(' '.join(map (str,chosen)))
-print(best_in_frequency)
+
+def main():
+    logic = True
+    while logic:
+        amoun_of_lines = int (input("Type the amount of lines: "))
+        numbers_n_frequency = getDataNumbers()
+        desired_frequency = int (input("Frequency: "))
+        best_in_frequency = frequencyPrinter(numbers_n_frequency, desired_frequency,amoun_of_lines)
+        printTwentyRandom(best_in_frequency)
+        option = input("type -1 to leave or any key to continue:")
+        int (option)
+        if option == -1:
+            logic = False
+        else:
+            logic = True
+ 
+
+
+main()
